@@ -557,3 +557,43 @@ input[type="file"] {
   }
 }
 
+/* BULK PAGE */
+
+.bulk-title {
+  text-align: center;
+  margin-bottom: 30px !important;
+  font-weight: bold;
+}
+
+.ranking-title {
+  margin-top: 40px !important;
+  margin-bottom: 20px !important;
+  text-align: center;
+}
+
+.candidate-card {
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.candidate-card:hover {
+  transform: translateY(-5px);
+}
+
+.rank-number {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.candidate-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.file-count {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
