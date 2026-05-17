@@ -344,6 +344,16 @@ function App() {
                 New Resume Analysis
               </Button>
 
+                      <Button
+  variant="contained"
+  href="/bulk"
+  style={{
+    marginLeft: "20px"
+  }}
+>
+  Bulk Analyzer
+</Button>
+
             </div>
 
             {loading && (
