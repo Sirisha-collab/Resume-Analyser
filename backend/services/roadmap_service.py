@@ -41,46 +41,84 @@ def match_skill_to_resource(skill):
     # Aliases
     aliases = {
 
-        "sql": [
-            "sql",
-            "mysql",
-            "postgresql",
-            "database",
-            "db"
-        ],
+    # -------------------
+    # DATABASES
+    # -------------------
+    "sql": ["sql", "database", "db", "query"],
+    "mysql": ["mysql", "my sql"],
+    "postgresql": ["postgresql", "postgre", "postgres"],
+    "mongodb": ["mongodb", "mongo", "nosql"],
+    "oracle": ["oracle db", "oracle database"],
 
-        "python": [
-            "python",
-            "py"
-        ],
+    # -------------------
+    # PROGRAMMING LANGUAGES
+    # -------------------
+    "python": ["python", "py"],
+    "java": ["java", "core java", "jvm"],
+    "javascript": ["javascript", "js", "nodejs", "node.js"],
+    "typescript": ["typescript", "ts"],
+    "csharp": ["c#", "c sharp", ".net", "dotnet", "asp.net"],
+    "cpp": ["c++", "cpp"],
+    "go": ["golang", "go"],
+    "ruby": ["ruby"],
+    "php": ["php"],
 
-        "javascript": [
-            "javascript",
-            "js"
-        ],
+    # -------------------
+    # FRONTEND
+    # -------------------
+    "html": ["html", "html5"],
+    "css": ["css", "css3", "bootstrap", "tailwind"],
+    "react": ["react", "reactjs", "react.js"],
+    "angular": ["angular", "angularjs"],
+    "vue": ["vue", "vuejs"],
 
-        "machine learning": [
-            "ml",
-            "machine learning",
-            "ai"
-        ],
+    # -------------------
+    # MACHINE LEARNING / AI
+    # -------------------
+    "machine learning": ["ml", "machine learning", "ai", "artificial intelligence"],
+    "deep learning": ["deep learning", "dl", "neural network", "nn"],
+    "nlp": ["nlp", "natural language processing"],
+    "data science": ["data science", "datascience"],
+    "pandas": ["pandas"],
+    "numpy": ["numpy"],
+    "tensorflow": ["tensorflow", "tf"],
+    "pytorch": ["pytorch", "torch"],
 
-        "java": [
-            "java",
-            "core java"
-        ],
+    # -------------------
+    # CLOUD
+    # -------------------
+    "aws": ["aws", "amazon web services"],
+    "azure": ["azure", "microsoft azure"],
+    "gcp": ["gcp", "google cloud", "google cloud platform"],
 
-        "csharp": [
-            "c#",
-            "c sharp",
-            ".net",
-            "dotnet"
-        ],
+    # -------------------
+    # DEVOPS
+    # -------------------
+    "docker": ["docker", "containerization"],
+    "kubernetes": ["kubernetes", "k8s"],
+    "jenkins": ["jenkins", "ci/cd"],
+    "git": ["git", "github", "gitlab"],
 
-        "css": [
-            "css",
-            "css3"
-        ]
+    # -------------------
+    # BIG DATA
+    # -------------------
+    "hadoop": ["hadoop"],
+    "spark": ["spark", "apache spark"],
+    "kafka": ["kafka", "apache kafka"],
+
+    # -------------------
+    # MOBILE
+    # -------------------
+    "android": ["android", "android development"],
+    "ios": ["ios", "swift ios"],
+    "flutter": ["flutter", "dart"],
+
+    # -------------------
+    # OTHER COMMON SKILLS
+    # -------------------
+    "excel": ["excel", "ms excel"],
+    "powerbi": ["power bi", "powerbi"],
+    "tableau": ["tableau"]
     }
 
     for key, values in aliases.items():
@@ -112,27 +150,47 @@ def get_learning_links(missing_skills):
 
         pretty_names = {
 
-            "sql": "SQL",
+    "sql": "SQL",
+    "mysql": "MySQL",
+    "postgresql": "PostgreSQL",
+    "mongodb": "MongoDB",
+    "oracle": "Oracle",
 
-            "mysql": "MySQL",
+    "python": "Python",
+    "java": "Java",
+    "javascript": "JavaScript",
+    "typescript": "TypeScript",
+    "csharp": "C#",
+    "cpp": "C++",
 
-            "postgresql": "PostgreSQL",
+    "react": "React",
+    "angular": "Angular",
+    "vue": "Vue",
 
-            "csharp": "C#",
+    "machine learning": "Machine Learning",
+    "deep learning": "Deep Learning",
+    "nlp": "NLP",
+    "data science": "Data Science",
 
-            "javascript": "JavaScript",
+    "tensorflow": "TensorFlow",
+    "pytorch": "PyTorch",
 
-            "java": "Java", 
-            "azure" : "Azure",
-            "c++" : "C++",
-            "html" : "HTML",
+    "aws": "AWS",
+    "azure": "Azure",
+    "gcp": "GCP",
 
-            "AI" : "ai",
-            "ML" : "machine learning",
-            "deep learning" : "Deep Learning",
-            "Hadoop" : "hadoop",
-            "css": "CSS"
-        }
+    "docker": "Docker",
+    "kubernetes": "Kubernetes",
+    "jenkins": "CI/CD",
+
+    "hadoop": "Hadoop",
+    "spark": "Spark",
+
+    "git": "Git",
+    "excel": "Excel",
+    "powerbi": "Power BI",
+    "tableau": "Tableau"
+    }
 
         display_name = pretty_names.get(
             key,
