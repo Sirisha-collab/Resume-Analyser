@@ -64,10 +64,11 @@ Login
 
 Upload Resume and JD
 <img width="1765" height="537" alt="Screenshot 2026-04-08 165709" src="https://github.com/user-attachments/assets/37d8e388-e673-47b0-9f20-27b68191f509" />
-<img width="1913" height="1018" alt="Screenshot 2026-05-16 084847" src="https://github.com/user-attachments/assets/ebe5ae43-0f81-4a05-ba4c-0fc1eddc624e" />
+<img width="1901" height="843" alt="Screenshot 2026-04-08 170706" src="https://github.com/user-attachments/assets/643850f0-96d5-43c7-90ed-b0074796e445" />
+
 
 **Score Predictions**
 <img width="1372" height="640" alt="Screenshot 2026-05-19 085734" src="https://github.com/user-attachments/assets/26748676-b8a9-4499-af16-6006de286833" />
 
 **Further Enhancements:**
-<img width="1901" height="843" alt="Screenshot 2026-04-08 170706" src="https://github.com/user-attachments/assets/643850f0-96d5-43c7-90ed-b0074796e445" />
+<img width="1913" height="1018" alt="Screenshot 2026-05-16 084847" src="https://github.com/user-attachments/assets/ebe5ae43-0f81-4a05-ba4c-0fc1eddc624e" />
