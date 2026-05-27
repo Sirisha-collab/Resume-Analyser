@@ -1,0 +1,6 @@
+Delivered customer requests on time with quality solutions for the customer problems.
+Involved in solving and fixing the bugs in existing system.
+Followed sprint planning and standard procedures to implement code.
+Tested the product in controlled, real situations before going live and worked on providing manuals and documents for users.
+SKILLS
+C# ASP.NET ADO.NET MVC Web API SQL Server LINQ and EF

@@ -1,0 +1,654 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Poppins", sans-serif;
+
+  background: linear-gradient(135deg, #4f6bdc, #6b52c9);
+
+  min-height: 100vh;
+
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   APP BACKGROUND
+========================= */
+
+.app-bg {
+  min-height: 100vh;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.glass-nav {
+  background: rgba(17, 20, 60, 0.92) !important;
+
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.toolbar-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+}
+
+.nav-right {
+  margin-left: auto;
+}
+
+.dark-toggle {
+  margin-right: 0 !important;
+}
+
+.dark-toggle .MuiTypography-root {
+  font-weight: 200;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.main-container {
+  margin-top: 35px;
+  padding-bottom: 60px !important;
+}
+
+/* =========================
+   GLASS CARD
+========================= */
+
+.glass-card {
+  background: rgba(255,255,255,0.12) !important;
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 24px !important;
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.18),
+    inset 0 1px 1px rgba(255,255,255,0.08);
+
+  color: white !important;
+
+  transition: 0.35s ease;
+
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.22),
+    inset 0 1px 1px rgba(255,255,255,0.12);
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 380px;
+
+  padding: 35px !important;
+
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.login-title {
+  text-align: center;
+  font-weight: 700 !important;
+}
+
+.login-subtitle {
+  text-align: center;
+  opacity: 0.8;
+  margin-top: -8px;
+}
+
+/* =========================
+   UPLOAD CARD
+========================= */
+
+.upload-card {
+  padding: 30px !important;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+
+  margin-bottom: 40px;
+}
+
+/* =========================
+   FILE INPUT
+========================= */
+
+input[type="file"] {
+  padding: 14px;
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.08);
+
+  color: white;
+
+  border: none;
+}
+
+/* =========================
+   TEXTFIELDS
+========================= */
+
+.MuiTextField-root {
+  background: rgba(255,255,255,0.08);
+
+  border-radius: 14px;
+}
+
+.MuiOutlinedInput-root {
+  color: white !important;
+
+  border-radius: 14px !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+.MuiInputBase-input {
+  color: white !important;
+}
+
+.MuiInputLabel-root {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+/* =========================
+   BUTTON GROUP
+========================= */
+
+.button-group {
+  display: flex;
+
+  gap: 20px;
+
+  margin-top: 8px;
+}
+
+.analyze-btn {
+  min-width: 180px !important;
+}
+
+.new-analysis-btn {
+  min-width: 240px !important;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.MuiButton-contained {
+  background: linear-gradient(90deg, #1bb6ff, #006eff) !important;
+
+  color: white !important;
+
+  border-radius: 14px !important;
+
+  padding: 12px 28px !important;
+
+  font-weight: 700 !important;
+
+  box-shadow: 0 6px 20px rgba(0,110,255,0.4);
+
+  transition: 0.3s ease !important;
+}
+
+.MuiButton-contained:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(0,110,255,0.55);
+}
+
+.MuiButton-outlined {
+  border: 1px solid rgba(255,255,255,0.3) !important;
+
+  color: white !important;
+
+  border-radius: 14px !important;
+
+  padding: 12px 28px !important;
+
+  font-weight: 600 !important;
+}
+
+.MuiButton-outlined:hover {
+  background: rgba(255,255,255,0.08) !important;
+}
+
+/* =========================
+   RESUME HEADER
+========================= */
+
+.resume-wrapper {
+  margin-top: 40px;
+}
+
+.resume-header {
+  margin-bottom: 30px;
+}
+
+.resume-title {
+  font-weight: 700 !important;
+}
+
+.experience-text {
+  font-size: 18px !important;
+
+  opacity: 0.9;
+}
+
+/* =========================
+   SCORE GRID
+========================= */
+
+.section-grid {
+  margin-bottom: 38px !important;
+}
+
+/* =========================
+   SCORE CARD
+========================= */
+
+.score-card {
+  min-height: 100px;
+
+  width: 100%;
+
+  padding: 28px !important;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.score-icon {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+
+  background: rgba(255,255,255,0.14);
+
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.18);
+}
+
+.ai-icon {
+  background: rgba(200,100,255,0.2);
+}
+
+.job-icon {
+  background: rgba(255,180,80,0.2);
+}
+
+.semantic-icon {
+  background: rgba(100,255,150,0.18);
+}
+
+.score-label {
+  font-size: 18px !important;
+
+  font-weight: 600 !important;
+}
+
+.score-value {
+  font-size: 36px !important;
+
+  font-weight: 700 !important;
+
+  margin-top: 8px !important;
+}
+
+.small-text {
+  margin-top: 4px !important;
+
+  opacity: 0.85;
+}
+
+/* =========================
+   ANALYSIS TITLE
+========================= */
+
+.analysis-title {
+  text-align: center;
+
+  margin-top: 20px;
+  margin-bottom: 40px;
+
+  font-size: 15px;
+
+  letter-spacing: 5px;
+
+  opacity: 0.9;
+
+  font-weight: 600;
+}
+
+/* =========================
+   CHART CARDS
+========================= */
+
+.chart-card {
+  padding: 25px !important;
+
+  min-height: 420px;
+
+  background: rgba(18,20,58,0.85) !important;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.chart-card canvas {
+  max-width: 320px !important;
+  max-height: 280px !important;
+}
+
+.chart-grid {
+  margin-top: 10px !important;
+  margin-bottom: 30px !important;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+  font-size: 24px !important;
+
+  font-weight: 700 !important;
+
+  margin-bottom: 18px !important;
+}
+
+/* =========================
+   SKILL CARD
+========================= */
+
+.skill-card {
+  padding: 28px !important;
+
+  min-height: 220px;
+}
+
+.chip-container {
+  margin-top: 12px;
+}
+
+.MuiChip-root {
+  margin: 6px !important;
+
+  font-weight: 600 !important;
+
+  border-radius: 10px !important;
+}
+
+/* =========================
+   RECOMMENDATION
+========================= */
+
+.recommendation-card {
+  padding: 28px !important;
+  border-radius: 16px;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+.recommendation-item {
+  margin-bottom: 14px !important;
+
+  font-size: 16px !important;
+
+  line-height: 1.8 !important;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download-section {
+  text-align: center;
+
+  margin-top: 20px;
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 10px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.45);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .analyze-btn,
+  .new-analysis-btn {
+    width: 100%;
+  }
+
+  .chart-card {
+    min-height: 360px;
+  }
+
+  .score-value {
+    font-size: 28px !important;
+  }
+
+  .resume-title {
+    font-size: 30px !important;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .toolbar-custom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .nav-right {
+    margin-left: 0;
+  }
+
+  .score-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .chart-wrapper {
+    height: 240px;
+  }
+
+  .chart-card canvas {
+    max-width: 240px !important;
+    max-height: 220px !important;
+  }
+}
+
+/* BULK PAGE */
+
+.bulk-title {
+  text-align: center;
+  margin-bottom: 30px !important;
+  font-weight: bold;
+}
+
+.ranking-title {
+  margin-top: 40px !important;
+  margin-bottom: 20px !important;
+  text-align: center;
+}
+
+.candidate-card {
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.candidate-card:hover {
+  transform: translateY(-5px);
+}
+
+.rank-number {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.candidate-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.file-count {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.roadmap-card {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+}
+
+.learning-resource-card {
+  transition: 0.3s;
+}
+
+.learning-resource-card:hover {
+  transform: translateY(-3px);
+}
+
+.score-grid {
+  display: flex;
+  flex-wrap: nowrap !important;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.score-grid .MuiGrid-item {
+  flex: 1;
+  min-width: 250px;
+}
+
+.action-verb-item {
+  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.weak-line {
+  opacity: 0.85;
+  font-size: 14px;
+  margin-bottom: 6px;
+}

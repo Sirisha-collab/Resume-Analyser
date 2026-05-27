@@ -1,0 +1,22 @@
+Key Responsibilities
+
+Develop new userfacing features using React.js and related technologies.
+Build reusable components and frontend libraries for future use.
+Optimize application performance, ensuring responsiveness on different devices and browsers.
+Translate UI/UX designs and wireframes into highquality code.
+Work with REST APIs/GraphQL to integrate front end with backend services.
+Collaborate with designers, backend developers, QA, and product teams.
+Write clean, maintainable, and welldocumented code.
+Participate in code reviews and contribute to continuous improvement.
+Required Skills & Qualifications
+
+Strong proficiency in JavaScript (ES6+) and TypeScript (preferred).
+Solid understanding of React.js, including hooks, state management, lifecycle, and component patterns.
+Experience with React ecosystem tools such as:
+Redux / Zustand / Context API
+React Router
+Axios / Fetch API
+Proficiency in HTML5, CSS3, SASS, Styled Components, or other styling frameworks.
+Experience with version control (Git).
+Familiarity with build tools: Webpack, Vite, Babel, or similar.
+Understanding of responsive and adaptive design principles.
