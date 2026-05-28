@@ -13,7 +13,7 @@ from services.experience_service import (
 )
 
 from services.roadmap_service import (
-    get_learning_links
+    get_learning_roadmap
 )
 
 from services.ats_service import (
@@ -77,7 +77,7 @@ def compare_resumes():
                 resume_text
             )
 
-            learning_roadmap = get_learning_links(
+            learning_roadmap = get_learning_roadmap(
                 missing
             )
 
