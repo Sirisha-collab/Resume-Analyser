@@ -56,10 +56,13 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");     //for login
   const [password, setPassword] = useState("");
 
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(true);   //for dark mode toggle
+
+  const [fakeResults, setFakeResults] = useState([]);   //for Fake resume detection results
+  const [fakeLoading, setFakeLoading] = useState(false);
 
   const fileInputRef = useRef(null);
 
@@ -124,6 +127,46 @@ function App() {
 
     }
   };
+
+
+//fake resume detection
+
+  const handleFakeDetection = async () => {
+
+  if (!files.length) {
+    return alert("Upload resumes first");
+  }
+
+  const formData = new FormData();
+
+  files.forEach((f) => {
+    formData.append("files", f);
+  });
+
+  try {
+
+    setFakeLoading(true);
+
+    const res = await axios.post(
+      "http://127.0.0.1:5000/detect_fake_pdf",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }
+    );
+
+    setFakeResults(res.data.results);
+
+  } catch (err) {
+
+    alert("Fake detection failed");
+
+  } finally {
+    setFakeLoading(false);
+  }
+};
 
   // ANALYZE
   const handleSubmit = async () => {
@@ -225,14 +268,14 @@ function App() {
               Login to continue
             </Typography>
 
-            <TextField
+            <TextField id="username"
               label="Username"
               onChange={(e) =>
                 setUsername(e.target.value)
               }
             />
 
-            <TextField
+            <TextField  id="password"
               label="Password"
               type="password"
               onChange={(e) =>
@@ -307,6 +350,7 @@ function App() {
           <Card className="glass-card upload-card">
 
             <input
+              id="resume-upload"
               type="file"
               multiple
               ref={fileInputRef}
@@ -316,6 +360,7 @@ function App() {
             />
 
             <TextField
+              id="jd-input"
               multiline
               rows={5}
               fullWidth
@@ -329,6 +374,7 @@ function App() {
             <div className="button-group">
 
               <Button
+                id="analyze-btn"
                 variant="contained"
                 onClick={handleSubmit}
                 className="analyze-btn"
@@ -343,6 +389,14 @@ function App() {
               >
                 New Resume Analysis
               </Button>
+
+              <Button
+  variant="contained"
+  color="error"
+  onClick={handleFakeDetection}
+>
+  Detect Fake Resumes
+</Button>
 
                       <Button
   variant="contained"
@@ -841,6 +895,34 @@ function App() {
 
           )}
 
+{fakeResults.length > 0 && (
+  <Card className="glass-card">
+
+    <Typography variant="h6">
+      Fake Resume Detection Results
+    </Typography>
+
+    {fakeResults.map((r, i) => (
+      <div key={i} style={{ marginTop: "10px" }}>
+
+        <Chip
+          label={r.filename}
+        />
+
+        <Chip
+          label={r.result}
+          color={r.result.includes("Fake") ? "error" : "success"}
+        />
+
+        <Chip
+          label={`Score: ${r.score.toFixed(2)}`}
+        />
+
+      </div>
+    ))}
+
+  </Card>
+)}
         </Container>
 
       </div>
