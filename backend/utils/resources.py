@@ -7,11 +7,17 @@ LEARNING_RESOURCES = {
         {"name": "Python Bootcamp (Udemy)", "url": "https://www.udemy.com/course/complete-python-bootcamp/"},
         {"name": "Python Learning Path (Microsoft Learn)", "url": "https://learn.microsoft.com/en-us/training/paths/python-language/"}
     ],
-    "machine learning": [
+    "machine learning": {
+    "resources": [
         {"name": "Machine Learning - Andrew Ng (Coursera)", "url": "https://www.coursera.org/learn/machine-learning"},
-        {"name": "Machine Learning A-Z (Udemy)", "url": "https://www.udemy.com/course/machinelearning/"},
-        {"name": "ML Path (Microsoft Learn)", "url": "https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-with-ml/"}
+        {"name": "Machine Learning A-Z (Udemy)", "url": "https://www.udemy.com/course/machinelearning/"}
     ],
+    "projects": [
+        "Build a churn prediction model",
+        "Customer segmentation using K-Means",
+        "End-to-end ML pipeline with deployment (FastAPI + Docker)"
+    ]
+    },
     "deep learning": [
         {"name": "Deep Learning Specialization (Coursera)", "url": "https://www.coursera.org/specializations/deep-learning"},
         {"name": "Deep Learning (Udemy)", "url": "https://www.udemy.com/course/deeplearning/"}
@@ -24,10 +30,18 @@ LEARNING_RESOURCES = {
         {"name": "React Course (Udemy)", "url": "https://www.udemy.com/course/react-the-complete-guide/"},
         {"name": "React Docs", "url": "https://react.dev"}
     ],
-    "azure": [
+    "azure": {
+    "resources": [
         {"name": "Azure Fundamentals (Microsoft Learn)", "url": "https://learn.microsoft.com/en-us/training/paths/azure-fundamentals/"},
         {"name": "Azure Course (Udemy)", "url": "https://www.udemy.com/course/azure-essentials/"}
     ],
+    "tools": [
+        "Azure ML",
+        "Azure Functions",
+        "AKS",
+        "Service Bus"
+    ]
+    },
     "java": [
     {"name": "Java Programming Masterclass (Udemy)", "url": "https://www.udemy.com/course/java-the-complete-java-developer-course/"},
     {"name": "Java Programming (Coursera)", "url": "https://www.coursera.org/specializations/java-programming"},
