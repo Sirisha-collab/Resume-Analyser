@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+import traceback
 
 from utils.helpers import extract_text
 
@@ -165,5 +166,6 @@ def compare_resumes():
     except Exception as e:
 
         return jsonify({
-            "error": str(e)
+        "error": str(e),
+        "trace": traceback.format_exc()
         }), 500
