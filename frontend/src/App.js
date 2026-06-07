@@ -128,6 +128,16 @@ function App() {
     }
   };
 
+  //Log out
+  const handleLogout = () => {
+  setLoggedIn(false);
+
+  // optional cleanup
+  setUsername("");
+  setPassword("");
+  setFiles([]);
+  setJobDesc("");
+};
 
 //fake resume detection
 
@@ -336,8 +346,16 @@ function App() {
                 label="Dark Mode"
                 labelPlacement="start"
               />
+              
+              <Button
+              variant="outlined"
+              color="inherit"
+              onClick={handleLogout}>
+                Logout
+                </Button>
+                
+                </div>
 
-            </div>
 
           </Toolbar>
 
@@ -421,6 +439,7 @@ function App() {
           {/* RESULTS */}
 
           {results.length > 0 && (
+            <div id="results">
 
             <>
 
@@ -892,7 +911,7 @@ function App() {
               })}
 
             </>
-
+          </div>
           )}
 
 {fakeResults.length > 0 && (
@@ -932,3 +951,4 @@ function App() {
 }
 
 export default App;
+
