@@ -7,11 +7,35 @@ actionable career recommendations. It provides interactive analytics, visual ins
 3. Deep Learning Resume Ranking
 4. Job Fit Prediction
 5. Experience Level Prediction
-6. Skill Gap Visualization
-Includes: bar charts and pie charts
-8. Learning Skill Gap Roadmap
-9. PDF Report Generation
-10. Multi-Resume Comparison (Experimental / In Progress)
+6. Skill Gap Visualization: bar charts and pie charts
+7. Learning Skill Gap Roadmap
+8. PDF Report Generation
+9. Multi-Resume Comparison (Experimental / In Progress)
+
+**Backend Setup**
+
+### Run Backend:
+
+```bash
+cd backend
+python app.py
+```
+
+**Frontend Setup**
+
+### Run frontend:
+
+```bash
+cd frontend
+npm start
+```
+
+### Run Playwright:
+
+```bash
+npx playwright test --headed --debug	  OR
+npx playwright test --browser=firefox --headed
+```
 
 **🛠️ Tech Stack**
 Backend
@@ -33,21 +57,6 @@ Chart.js
 Data Processing
 Pandas
 NumPy
-
-**Core Modules**
-ResumeAnalysis_PY/
-│
-├── api/
-├── ml_models/
-├── preprocessing/
-├── embeddings/
-├── ranking_engine/
-├── charts/
-├── static/
-├── templates/
-├── reports/
-└── app.py
-
 
 📊 **Future Enhancements**
 Real-time recruiter dashboard
