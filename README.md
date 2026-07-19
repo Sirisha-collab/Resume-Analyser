@@ -1,5 +1,6 @@
-This platform combines Machine Learning, NLP, Deep Learning, and LLM-based insights to evaluate resumes, predict job fit, identify skill gaps, and generate 
-actionable career recommendations. It provides interactive analytics, visual insights, ATS scoring, skill-gap detection, and AI-generated resume enhancement recommendations.
+**Resume Analyser**
+
+Imagine a career coach reading your resume. It first understands your skills and experience, then compares them with what employers are looking for. Finally, it shows where you stand, points out missing skills, and gives personalized suggestions to improve your resume and career opportunities.
 
 **Key Features**
 1. ATS Resume Score
