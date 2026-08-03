@@ -3,9 +3,6 @@ from typing import Dict, List
 
 
 class ExperienceLevelPredictor:
-    """
-    Rule-based resume experience classifier (improved version).
-    """
 
     EXPERIENCE_KEYWORDS: Dict[str, List[str]] = {
         "junior": ["intern", "junior", "trainee", "entry level", "fresher"],
@@ -47,8 +44,6 @@ class ExperienceLevelPredictor:
         return scores
 
     def predict(self, resume_text: str) -> str:
-
-        # ✅ validation
         if not resume_text or not isinstance(resume_text, str):
             raise ValueError("resume_text must be a non-empty string")
 
@@ -61,7 +56,6 @@ class ExperienceLevelPredictor:
         # Step 2: extract years
         years = self._extract_years_of_experience(text)
 
-        # 🔥 DEBUG (keep temporarily)
         print("===== DEBUG EXPERIENCE =====")
         print("TEXT:", text)
         print("KEYWORD SCORES:", scores)
