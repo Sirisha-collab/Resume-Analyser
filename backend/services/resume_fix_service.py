@@ -71,11 +71,9 @@ def is_weak_structure(line):
 
     first_word = words[0]
 
-    # ❌ does NOT start with action verb
     if first_word not in ACTION_VERBS_SET:
         return True
 
-    # ❌ passive voice detection
     passive_patterns = [
         r"\b(was|were|is|are|been)\b .* (developed|built|designed|implemented|created|managed)",
     ]
@@ -85,10 +83,6 @@ def is_weak_structure(line):
 
     return False
 
-
-# -----------------------------
-# BULLET REWRITER
-# -----------------------------
 def rewrite_bullet(line):
 
     cleaned = re.sub(
@@ -108,10 +102,6 @@ def rewrite_bullet(line):
 
     return cleaned
 
-
-# -----------------------------
-# MAIN FIX ENGINE
-# -----------------------------
 def resume_fix_ai(resume_text):
 
     lines = clean_lines(resume_text)
@@ -141,10 +131,6 @@ def resume_fix_ai(resume_text):
 
     return improvements[:5]
 
-
-# -----------------------------
-# ACTION VERB SUGGESTIONS
-# -----------------------------
 def suggest_action_verbs(resume_text):
 
     lines = clean_lines(resume_text)
