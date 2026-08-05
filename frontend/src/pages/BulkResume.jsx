@@ -12,11 +12,9 @@ import {
   Chip
 } from "@mui/material";
 
-import "../App.css";
-
 function BulkResume() {
 
-  const [mode, setMode] = useState("bulk"); 
+  const [mode, setMode] = useState("bulk");
   // "bulk" OR "single"
 
   const [files, setFiles] = useState([]);

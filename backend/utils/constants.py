@@ -4,10 +4,16 @@
 SKILL_SYNONYMS = {
     "ml": "machine learning",
     "ai": "artificial intelligence",
+    "dl": "deep learning",
+    "ds": "data science",
     "js": "javascript",
     "py": "python",
     "db": "database",
-    "pm": "project management"
+    "pm": "project management",
+    "nlp": "natural language processing",
+    "gcp": "google cloud platform",
+    "aws": "amazon web services",
+    "az": "azure"
 }
 
 TECH_SKILLS = {
