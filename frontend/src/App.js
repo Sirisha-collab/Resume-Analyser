@@ -6,39 +6,23 @@ import React, {
   useCallback,
 } from "react";
 import axios from "axios";
+
 import { Bar, Pie } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  ArcElement,
-  Tooltip,
-  Legend,
+  Chart as ChartJS, BarElement, CategoryScale,
+  LinearScale, ArcElement, Tooltip, Legend,
 } from "chart.js";
 
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Container,
-  Button,
-  IconButton,
-  Box,
-  Stack,
-  TextField,
-  InputAdornment,
-  CircularProgress,
-  LinearProgress,
-  Paper,
-  Chip,
-  Divider,
-  Snackbar,
-  Alert,
-  Tooltip as MuiTooltip,
-  Skeleton,
-  Link,
+  Alert, AppBar, Box,
+  Button, Chip, CircularProgress,
+  Container, Divider, IconButton,
+  InputAdornment, LinearProgress, Link,
+  Paper, Skeleton, Snackbar,
+  Stack, TextField, Toolbar,
+  Tooltip as MuiTooltip, Typography,
 } from "@mui/material";
+
 import { createTheme, ThemeProvider, alpha } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -436,22 +420,23 @@ function ResumeChat({ resumeId, notify }) {
     });
   }, [messages, loading]);
 
-  const ask = async () => {
-    const q = question.trim();
-    if (!q) return;
+  const ask = async (preset) => {
+    const texting = (typeof preset === "string" ? preset : question).trim();
+    if (!texting || loading) return;
+
     if (!resumeId) {
       notify("This resume has no index yet, so chat is unavailable.", "warning");
       return;
     }
 
-    setMessages((m) => [...m, { role: "user", text: q }]);
+    setMessages((m) => [...m, { role: "user", text: texting }]);
     setQuestion("");
     setLoading(true);
 
     try {
       const res = await api.post("/resume-chat", {
         resume_id: resumeId,
-        question: q,
+        question: texting,
       });
       setMessages((m) => [
         ...m,
@@ -472,77 +457,251 @@ function ResumeChat({ resumeId, notify }) {
   };
 
   return (
-    <Paper sx={{ borderRadius: 2.5, overflow: "hidden" }}>
-      <Box sx={{ px: 2.25, py: 1.75, borderBottom: 1, borderColor: "divider" }}>
-        <Typography variant="h3">Ask about this resume</Typography>
-        <Typography variant="caption" sx={{ color: "text.secondary" }}>
-          Answers come from the indexed resume text only
-        </Typography>
-      </Box>
+    <Paper
+      sx={{
+        borderRadius: 2.5,
+        overflow: "hidden",
+        maxWidth: 760,
+        mx: "auto",
+        width: "100%",
+      }}
+    >
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={1.25}
+        sx={{ px: 2.25, py: 1.75, borderBottom: 1, borderColor: "divider" }}
+      >
+        <Box
+          sx={{
+            width: 32,
+            height: 32,
+            borderRadius: "50%",
+            display: "grid",
+            placeItems: "center",
+            fontSize: 13,
+            fontWeight: 600,
+            color: "primary.main",
+            bgcolor: (th) => alpha(th.palette.primary.main, 0.12),
+          }}
+        >
+          AI
+        </Box>
+        <Box>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600, lineHeight: 1.2 }}>
+            Ask about this resume
+          </Typography>
+          <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            Answers come from the indexed resume text only
+          </Typography>
+        </Box>
+      </Stack>
 
       <Box
         ref={scrollRef}
+        role="log"
+        aria-live="polite"
         sx={{
-          height: 300,
+          height: 360,
           overflowY: "auto",
           px: 2.25,
           py: 2,
           display: "flex",
           flexDirection: "column",
-          gap: 1.25,
+          gap: 1.5,
           bgcolor: (th) => alpha(th.palette.text.primary, 0.02),
         }}
       >
         {messages.length === 0 && !loading && (
-          <Stack sx={{ m: "auto", textAlign: "center", maxWidth: 300 }} spacing={0.5}>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              Try: "How many years of React experience?" or "List every company
-              worked at."
+          <Stack sx={{ m: "auto", maxWidth: 380 }} spacing={1.5}>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", textAlign: "center" }}
+            >
+              Ask anything about this resume.
             </Typography>
+            <Stack spacing={0.75}>
+              {[
+                "How many years of React experience?",
+                "List every company worked at.",
+                "Biggest skill gaps for this JD?",
+              ].map((s) => (
+                <Chip
+                  key={s}
+                  label={s}
+                  variant="outlined"
+                  onClick={() => ask(s)}
+                  sx={{ justifyContent: "flex-start", borderRadius: 1.5 }}
+                />
+              ))}
+            </Stack>
           </Stack>
         )}
 
-        {messages.map((m, i) => (
-          <Box
-            key={i}
-            sx={{
-              alignSelf: m.role === "user" ? "flex-end" : "flex-start",
-              maxWidth: "82%",
-              px: 1.75,
-              py: 1.25,
-              borderRadius: 2,
-              fontSize: 14,
-              lineHeight: 1.55,
-              border: 1,
-              borderColor: m.failed ? "error.main" : "divider",
-              bgcolor: (th) =>
-                m.role === "user"
-                  ? alpha(th.palette.primary.main, 0.12)
-                  : th.palette.background.paper,
-              color: m.failed ? "error.main" : "text.primary",
-            }}
-          >
-            {m.text}
-          </Box>
-        ))}
+        {messages.map((m, i) => {
+          const isUser = m.role === "user";
+          return (
+            <Stack
+              key={m.id ?? i}
+              direction={isUser ? "row-reverse" : "row"}
+              spacing={1.25}
+              alignItems="flex-start"
+              sx={{ flexShrink: 0 }}
+            >
+              <Box
+                sx={{
+                  flexShrink: 0,
+                  width: 28,
+                  height: 28,
+                  mt: 0.25,
+                  borderRadius: "50%",
+                  display: "grid",
+                  placeItems: "center",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: isUser ? "primary.main" : "text.secondary",
+                  bgcolor: (th) =>
+                    isUser
+                      ? alpha(th.palette.primary.main, 0.12)
+                      : alpha(th.palette.text.primary, 0.07),
+                }}
+              >
+                {isUser ? "You" : "AI"}
+              </Box>
+
+              <Stack spacing={0.5} sx={{ maxWidth: "78%", minWidth: 0 }}>
+                <Box
+                  sx={{
+                    px: 1.75,
+                    py: 1.25,
+                    fontSize: 14,
+                    lineHeight: 1.55,
+                    whiteSpace: "pre-wrap",
+                    overflowWrap: "anywhere",
+                    border: 1,
+                    borderColor: m.failed ? "error.main" : "divider",
+                    borderRadius: 2,
+                    borderTopRightRadius: isUser ? 4 : 16,
+                    borderTopLeftRadius: isUser ? 16 : 4,
+                    bgcolor: (th) =>
+                      isUser
+                        ? alpha(th.palette.primary.main, 0.12)
+                        : th.palette.background.paper,
+                    color: m.failed ? "error.main" : "text.primary",
+                  }}
+                >
+                  {m.text}
+                </Box>
+
+                {m.failed && m.retryOf && (
+                  <Chip
+                    label="↻ Try again"
+                    size="small"
+                    variant="outlined"
+                    onClick={() => ask(m.retryOf)}
+                    sx={{ alignSelf: "flex-start" }}
+                  />
+                )}
+
+                {m.sources?.length > 0 && (
+                  <Box
+                    component="details"
+                    sx={{
+                      fontSize: 12,
+                      color: "text.secondary",
+                      "& summary": { cursor: "pointer" },
+                    }}
+                  >
+                    <summary>{m.sources.length} matched sections</summary>
+                    <Stack spacing={0.5} sx={{ pt: 0.75 }}>
+                      {m.sources.map((s, j) => (
+                        <Box
+                          key={j}
+                          sx={{
+                            px: 1,
+                            py: 0.75,
+                            borderRadius: 1,
+                            bgcolor: (th) => alpha(th.palette.text.primary, 0.04),
+                            whiteSpace: "pre-wrap",
+                            overflowWrap: "anywhere",
+                          }}
+                        >
+                          {s.text}
+                        </Box>
+                      ))}
+                    </Stack>
+                  </Box>
+                )}
+              </Stack>
+            </Stack>
+          );
+        })}
 
         {loading && (
-          <Skeleton
-            variant="rounded"
-            width={180}
-            height={40}
-            sx={{ borderRadius: 2 }}
-          />
+          <Stack direction="row" spacing={1.25} sx={{ flexShrink: 0 }}>
+            <Box
+              sx={{
+                flexShrink: 0,
+                width: 28,
+                height: 28,
+                mt: 0.25,
+                borderRadius: "50%",
+                display: "grid",
+                placeItems: "center",
+                fontSize: 11,
+                fontWeight: 600,
+                color: "text.secondary",
+                bgcolor: (th) => alpha(th.palette.text.primary, 0.07),
+              }}
+            >
+              AI
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 0.5,
+                px: 1.75,
+                py: 1.5,
+                border: 1,
+                borderColor: "divider",
+                borderRadius: 2,
+                borderTopLeftRadius: 4,
+                bgcolor: "background.paper",
+                "@keyframes blink": {
+                  "0%,80%,100%": { opacity: 0.2 },
+                  "40%": { opacity: 1 },
+                },
+              }}
+            >
+              {[0, 1, 2].map((d) => (
+                <Box
+                  key={d}
+                  sx={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: "50%",
+                    bgcolor: "text.secondary",
+                    animation: "blink 1.4s infinite both",
+                    animationDelay: `${d * 0.16}s`,
+                  }}
+                />
+              ))}
+            </Box>
+          </Stack>
         )}
       </Box>
 
       <Stack
         direction="row"
         spacing={1}
-        sx={{ p: 1.75, borderTop: 1, borderColor: "divider" }}
+        alignItems="flex-end"
+        sx={{ p: 1.5, borderTop: 1, borderColor: "divider" }}
       >
         <TextField
           fullWidth
+          multiline
+          maxRows={4}
+          size="small"
           placeholder="Ask a question"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
@@ -552,15 +711,26 @@ function ResumeChat({ resumeId, notify }) {
               ask();
             }
           }}
+          sx={{ "& .MuiOutlinedInput-root": { borderRadius: 5, px: 1 } }}
         />
-        <Button
-          variant="contained"
-          onClick={ask}
+        <IconButton
+          onClick={() => ask()}
           disabled={loading || !question.trim()}
-          endIcon={loading ? null : <SendIcon sx={{ fontSize: 16 }} />}
+          sx={{
+            width: 40,
+            height: 40,
+            color: "primary.contrastText",
+            bgcolor: "primary.main",
+            "&:hover": { bgcolor: "primary.dark" },
+            "&.Mui-disabled": { bgcolor: (th) => alpha(th.palette.text.primary, 0.1) },
+          }}
         >
-          {loading ? <CircularProgress size={16} color="inherit" /> : "Send"}
-        </Button>
+          {loading ? (
+            <CircularProgress size={16} color="inherit" />
+          ) : (
+            <Box component="span" sx={{ fontSize: 15, lineHeight: 1 }}>➤</Box>
+          )}
+        </IconButton>
       </Stack>
     </Paper>
   );
