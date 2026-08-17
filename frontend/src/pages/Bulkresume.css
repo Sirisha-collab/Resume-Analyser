@@ -1,0 +1,519 @@
+/* ============================================================
+   BulkResume.css
+   All styling for the Resume Analyzer screen.
+   Component file should contain no colors, spacing or sizing.
+   ============================================================ */
+
+.ra-page {
+    --ra-ink: #23314d;
+    --ra-ink-dark: #162034;
+    --ra-ink-light: #3d5075;
+
+    --ra-text: #111827;
+    --ra-text-soft: #5b6472;
+    --ra-text-faint: #8b93a1;
+
+    --ra-bg: #f4f5f7;
+    --ra-surface: #ffffff;
+    --ra-surface-alt: #fafafb;
+    --ra-line: #e3e5ea;
+
+    --ra-good: #15803d;
+    --ra-mid: #b45309;
+    --ra-bad: #b91c1c;
+    --ra-none: #c4c8d0;
+
+    --ra-radius: 10px;
+    --ra-mono: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+
+    min-height: 100vh;
+    padding: 40px 0 64px;
+    background: var(--ra-bg);
+    color: var(--ra-text);
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.ra-shell {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ---------------- header ---------------- */
+
+.ra-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--ra-line);
+}
+
+.ra-eyebrow {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ra-text-soft);
+}
+
+.ra-title {
+    margin: 6px 0 0;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.ra-mode {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* ---------------- panels ---------------- */
+
+.ra-panel {
+    background: var(--ra-surface);
+    border: 1px solid var(--ra-line);
+    border-radius: var(--ra-radius);
+    padding: 24px;
+}
+
+.ra-panel+.ra-panel {
+    margin-top: 24px;
+}
+
+.ra-split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.ra-label {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ra-hint {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ra-text-soft);
+}
+
+.ra-rule {
+    height: 1px;
+    margin: 20px 0;
+    background: var(--ra-line);
+    border: 0;
+}
+
+/* ---------------- dropzone ---------------- */
+
+.ra-dropzone {
+    padding: 24px 16px;
+    text-align: center;
+    background: var(--ra-surface-alt);
+    border: 1px dashed var(--ra-line);
+    border-radius: var(--ra-radius);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.ra-dropzone:hover,
+.ra-dropzone:focus-visible {
+    border-color: var(--ra-ink-light);
+}
+
+.ra-dropzone.is-dragging {
+    border-color: var(--ra-ink);
+    background: rgba(35, 49, 77, 0.04);
+}
+
+.ra-dropzone.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.ra-drop-main {
+    margin: 0;
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+.ra-drop-sub {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--ra-text-soft);
+}
+
+.ra-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* ---------------- actions ---------------- */
+
+.ra-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ra-actions .ra-spacer {
+    flex: 1;
+}
+
+.ra-progress {
+    margin-top: 16px;
+}
+
+/* ---------------- stats ---------------- */
+
+.ra-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.ra-stat {
+    padding: 14px 16px;
+    background: var(--ra-surface);
+    border: 1px solid var(--ra-line);
+    border-radius: var(--ra-radius);
+}
+
+.ra-stat-label {
+    margin: 0;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ra-text-soft);
+}
+
+.ra-stat-value {
+    margin: 4px 0 0;
+    font-family: var(--ra-mono);
+    font-size: 22px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.ra-stat-value small {
+    margin-left: 2px;
+    font-size: 13px;
+    color: var(--ra-text-soft);
+}
+
+/* ---------------- section headings ---------------- */
+
+.ra-section {
+    margin: 36px 0 14px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* ---------------- shortlist cards ---------------- */
+
+.ra-shortlist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.ra-card {
+    padding: 16px;
+    background: var(--ra-surface);
+    border: 1px solid var(--ra-line);
+    border-top: 3px solid var(--ra-none);
+    border-radius: var(--ra-radius);
+}
+
+.ra-card.tone-good {
+    border-top-color: var(--ra-good);
+}
+
+.ra-card.tone-mid {
+    border-top-color: var(--ra-mid);
+}
+
+.ra-card.tone-bad {
+    border-top-color: var(--ra-bad);
+}
+
+.ra-card-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.ra-rank {
+    flex-shrink: 0;
+    font-family: var(--ra-mono);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ra-text-faint);
+}
+
+.ra-name {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ra-card .ra-meter {
+    margin-top: 12px;
+}
+
+.ra-card .MuiChip-root {
+    margin-top: 12px;
+}
+
+/* ---------------- score meter ---------------- */
+
+.ra-meter {
+    width: 96px;
+}
+
+.ra-meter.is-wide {
+    width: 100%;
+}
+
+.ra-meter-value {
+    margin: 0;
+    font-family: var(--ra-mono);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+}
+
+.ra-meter-value.is-empty {
+    color: var(--ra-text-faint);
+}
+
+.ra-meter-value small {
+    margin-left: 1px;
+    font-size: 11px;
+    color: var(--ra-text-soft);
+}
+
+.ra-meter-track {
+    height: 4px;
+    margin-top: 5px;
+    overflow: hidden;
+    background: #edeef1;
+    border-radius: 2px;
+}
+
+.ra-meter-fill {
+    height: 100%;
+    background: var(--ra-none);
+    transition: width 0.35s ease;
+}
+
+.ra-meter-fill.tone-good {
+    background: var(--ra-good);
+}
+
+.ra-meter-fill.tone-mid {
+    background: var(--ra-mid);
+}
+
+.ra-meter-fill.tone-bad {
+    background: var(--ra-bad);
+}
+
+/* ---------------- single result ---------------- */
+
+.ra-scores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.ra-score-block {
+    min-width: 140px;
+}
+
+/* ---------------- table ---------------- */
+
+.ra-table-panel {
+    margin-top: 32px;
+    overflow: hidden;
+    background: var(--ra-surface);
+    border: 1px solid var(--ra-line);
+    border-radius: var(--ra-radius);
+}
+
+.ra-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--ra-line);
+}
+
+.ra-toolbar-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ra-cell-name {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ra-cell-rank {
+    font-family: var(--ra-mono);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ra-text-faint);
+}
+
+.ra-dash {
+    color: var(--ra-text-faint);
+}
+
+/* ---------------- empty state ---------------- */
+
+.ra-empty {
+    margin-top: 24px;
+    padding: 48px 24px;
+    text-align: center;
+    border: 1px dashed var(--ra-line);
+    border-radius: var(--ra-radius);
+}
+
+.ra-empty-title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ra-empty-body {
+    margin: 6px 0 0;
+    font-size: 13.5px;
+    color: var(--ra-text-soft);
+}
+
+/* ============================================================
+   MUI overrides — scoped to .ra-page so other screens are safe
+   ============================================================ */
+
+.ra-page .MuiButton-root {
+    font-weight: 600;
+    text-transform: none;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+.ra-page .MuiButton-contained {
+    background: var(--ra-ink);
+}
+
+.ra-page .MuiButton-contained:hover {
+    background: var(--ra-ink-dark);
+    box-shadow: none;
+}
+
+.ra-page .MuiToggleButton-root {
+    padding: 6px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--ra-text-soft);
+    border-color: var(--ra-line);
+}
+
+.ra-page .MuiToggleButton-root.Mui-selected,
+.ra-page .MuiToggleButton-root.Mui-selected:hover {
+    color: #ffffff;
+    background: var(--ra-ink);
+}
+
+.ra-page .MuiTableCell-head {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ra-text-soft);
+    background: var(--ra-surface-alt);
+}
+
+.ra-page .MuiTableCell-root {
+    border-color: var(--ra-line);
+}
+
+.ra-page .MuiTableRow-hover:hover {
+    cursor: pointer;
+}
+
+.ra-page .MuiOutlinedInput-root {
+    border-radius: 8px;
+    background: var(--ra-surface);
+}
+
+.ra-page .MuiOutlinedInput-notchedOutline {
+    border-color: var(--ra-line);
+}
+
+.ra-page .MuiLinearProgress-root {
+    height: 4px;
+    border-radius: 2px;
+}
+
+.ra-page .MuiChip-outlined {
+    font-size: 12px;
+}
+
+@media (max-width: 640px) {
+
+    .ra-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ra-mode {
+        margin-left: 0;
+        align-self: flex-end;
+    }
+
+    .ra-scores {
+        gap: 20px;
+    }
+}
+
+/* ---------------- misc helpers ---------------- */
+
+.ra-section-flush {
+    margin-top: 0;
+}
+
+.ra-table-scroll {
+    max-height: 560px;
+}
+
+.ra-alert {
+    width: 100%;
+}
