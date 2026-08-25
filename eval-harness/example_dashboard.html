@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resume Analyser &mdash; Evaluation Dashboard</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+ background:#F4F6F8;color:#1f2937;line-height:1.5;padding:0 0 48px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header{background:#1F3A5F;color:#fff;padding:28px 0 30px;margin-bottom:26px}
+header h1{font-size:26px;font-weight:700;letter-spacing:-.4px}
+header .sub{color:#A9BDD1;font-size:13.5px;margin-top:5px}
+header .meta{color:#8CA3BB;font-size:12px;margin-top:12px;font-family:ui-monospace,monospace}
+
+.banner{border-radius:10px;padding:16px 20px;margin-bottom:24px;display:flex;
+ gap:14px;align-items:flex-start}
+.banner.ok{background:#E8F5EE;border:1px solid #A9D6BF}
+.banner.bad{background:#FDECEA;border:1px solid #F0B4AC}
+.banner .icon{font-size:20px;line-height:1.2}
+.banner h3{font-size:15px;margin-bottom:3px}
+.banner.ok h3{color:#2E7D5B}.banner.bad h3{color:#B03A2E}
+.banner p{font-size:13.5px;color:#44505f}
+.banner ul{margin:8px 0 0 18px;font-size:13px;color:#44505f}
+.banner li{margin:3px 0}
+
+.cards{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:26px}
+.card{background:#fff;border:1px solid #E1E6EC;border-radius:10px;padding:16px 18px;
+ flex:1 1 0;min-width:190px}
+.card .label{font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:#5A6472;
+ font-weight:600}
+.card .value{font-size:29px;font-weight:700;margin:6px 0 2px;letter-spacing:-.5px}
+.card .note{font-size:11.5px;color:#5A6472}
+
+section{background:#fff;border:1px solid #E1E6EC;border-radius:10px;
+ padding:22px 24px;margin-bottom:22px}
+section h2{font-size:16px;color:#1F3A5F;margin-bottom:4px}
+section .hint{font-size:12.5px;color:#5A6472;margin-bottom:16px}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#1F3A5F;color:#fff;text-align:left;padding:9px 11px;font-weight:600;
+ font-size:12px}
+th:first-child{border-radius:6px 0 0 0}th:last-child{border-radius:0 6px 0 0}
+td{padding:9px 11px;border-bottom:1px solid #EDF0F4}
+tr:last-child td{border-bottom:none}
+tr.dim td{color:#5A6472;background:#FAFBFC}
+tr.best td{background:#FFF9EC;font-weight:600}
+.num{font-family:ui-monospace,monospace;text-align:right}
+
+.bar{position:relative;background:#EDF0F4;border-radius:3px;height:19px;min-width:110px;
+ display:inline-block;vertical-align:middle;width:132px}
+.bar span{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.barval{display:inline-block;vertical-align:middle;margin-left:9px;font-size:12px;
+ font-family:ui-monospace,monospace;color:#1f2937;font-weight:600}
+
+.fail{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start}
+.fail>div:first-child{flex:0 0 230px}
+.fail>div:last-child{flex:1 1 380px}
+
+.ci{font-family:ui-monospace,monospace;font-size:12px;color:#5A6472}
+.tag{display:inline-block;padding:2px 8px;border-radius:11px;font-size:11px;font-weight:600}
+.tag.sig{background:#E8F5EE;color:#2E7D5B}
+.tag.ns{background:#FDF3E3;color:#8A6D1F}
+.tag.base{background:#EEF2F6;color:#5A6472}
+
+.fail{display:grid;grid-template-columns:220px 1fr;gap:26px;align-items:start}
+.frow{display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:12.5px}
+.frow .n{width:26px;text-align:right;font-family:ui-monospace,monospace;font-weight:600}
+.frow .fbar{flex:1;height:15px;background:#EDF0F4;border-radius:3px;overflow:hidden}
+.frow .fbar i{display:block;height:100%}
+.frow .nm{width:104px;color:#5A6472}
+
+.footer{font-size:11.5px;color:#5A6472;text-align:center;margin-top:8px}
+.caveat{background:#FFF8EC;border-left:3px solid #C9962C;padding:11px 15px;
+ border-radius:0 6px 6px 0;font-size:12.5px;color:#5A4600;margin-top:14px}
+
+</style></head>
+<body>
+<header><div class="wrap"><h1>Resume Analyser &mdash; Evaluation Dashboard</h1>
+<div class="sub">Ranking quality against baselines, with confidence intervals
+and significance testing</div>
+<div class="meta">Dataset(resumes=40, jobs=20, judgements=190, labels=&#x27;proxy (category match)&#x27;)</div>
+<div class="meta">labels: proxy (category match) &nbsp;|&nbsp; generated 25 Aug 2026, 01:01</div>
+</div></header>
+<div class="wrap">
+<div class="banner ok"><div class="icon">&#10003;</div><div><h3>Evaluation looks healthy</h3><p>Random floor is 0.199 and the usable spread is 0.592. These numbers are safe to read.</p></div></div>
+<div class="cards"><div class="card"><div class="label">Random floor</div><div class="value" style="color:#2E7D5B">0.199</div><div class="note">healthy &lt; 0.40</div></div><div class="card"><div class="label">Best system</div><div class="value" style="color:#1F3A5F">0.790</div><div class="note">TF-IDF cosine</div></div><div class="card"><div class="label">Usable spread</div><div class="value" style="color:#2E7D5B">0.592</div><div class="note">good separation</div></div><div class="card"><div class="label">Evaluation</div><div class="value" style="color:#2E8B8B">single split</div><div class="note">metric: nDCG@5</div></div></div>
+<section><h2>System comparison</h2>
+<p class="hint">Every system ranks the same resumes for the same queries.
+Random is the floor &mdash; if a system scores near it, the evaluation is broken,
+not the model.</p><table><thead><tr><th>System</th><th>nDCG@5</th><th>95% CI</th><th>vs baseline</th><th>MRR</th><th>MAP</th><th>ms/query</th></tr></thead><tbody><tr class="dim"><td>Random (floor)</td><td style="width:210px"><div class="bar"><span style="width:25.1%;background:#B8C2CC"></span></div><span class="barval">0.199</span></td><td class="ci">[0.105, 0.302]</td><td><span class="tag base">floor</span></td><td class="num">0.405</td><td class="num">0.286</td><td class="num">0.0</td></tr><tr class=""><td>Jaccard keyword overlap</td><td style="width:210px"><div class="bar"><span style="width:78.3%;background:#1F3A5F"></span></div><span class="barval">0.619</span></td><td class="ci">[0.460, 0.761]</td><td><span class="tag sig">p=0.021</span></td><td class="num">0.793</td><td class="num">0.691</td><td class="num">0.9</td></tr><tr class=""><td>BM25</td><td style="width:210px"><div class="bar"><span style="width:59.4%;background:#1F3A5F"></span></div><span class="barval">0.469</span></td><td class="ci">[0.309, 0.631]</td><td><span class="tag sig">p=0.001</span></td><td class="num">0.703</td><td class="num">0.545</td><td class="num">1.2</td></tr><tr class="best"><td>TF-IDF cosine</td><td style="width:210px"><div class="bar"><span style="width:100.0%;background:#C9962C"></span></div><span class="barval">0.790</span></td><td class="ci">[0.678, 0.880]</td><td><span class="tag base">baseline</span></td><td class="num">0.950</td><td class="num">0.808</td><td class="num">4.0</td></tr></tbody></table><div class="caveat"><b>Label caveat</b> &mdash; labels are <code>proxy (category match)</code>. These measure alignment with an automated rule, not verified human judgement. Validate against a hand-labelled sample before quoting these numbers.</div></section>
+<section><h2>nDCG@5 with 95% confidence intervals</h2>
+<p class="hint">Whiskers show the bootstrap interval. Overlapping intervals mean
+the difference is not established.</p><svg viewBox="0 0 1060 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif"><line x1="230.0" y1="22" x2="230.0" y2="196" stroke="#E3E7EC" stroke-width="1"/><text x="230.0" y="212" font-size="11" fill="#5A6472" text-anchor="middle">0.00</text><line x1="384.0" y1="22" x2="384.0" y2="196" stroke="#E3E7EC" stroke-width="1"/><text x="384.0" y="212" font-size="11" fill="#5A6472" text-anchor="middle">0.20</text><line x1="538.0" y1="22" x2="538.0" y2="196" stroke="#E3E7EC" stroke-width="1"/><text x="538.0" y="212" font-size="11" fill="#5A6472" text-anchor="middle">0.40</text><line x1="692.0" y1="22" x2="692.0" y2="196" stroke="#E3E7EC" stroke-width="1"/><text x="692.0" y="212" font-size="11" fill="#5A6472" text-anchor="middle">0.60</text><line x1="846.0" y1="22" x2="846.0" y2="196" stroke="#E3E7EC" stroke-width="1"/><text x="846.0" y="212" font-size="11" fill="#5A6472" text-anchor="middle">0.80</text><line x1="1000.0" y1="22" x2="1000.0" y2="196" stroke="#E3E7EC" stroke-width="1"/><text x="1000.0" y="212" font-size="11" fill="#5A6472" text-anchor="middle">1.00</text><text x="216" y="58.0" font-size="12.5" fill="#1f2937" text-anchor="end">Random (floor)</text><rect x="230" y="44.0" width="152.9" height="20" fill="#B8C2CC" rx="3"/><line x1="310.9" y1="54.0" x2="462.8" y2="54.0" stroke="#33404F" stroke-width="1.6"/><line x1="310.9" y1="48.0" x2="310.9" y2="60.0" stroke="#33404F" stroke-width="1.6"/><line x1="462.8" y1="48.0" x2="462.8" y2="60.0" stroke="#33404F" stroke-width="1.6"/><text x="471.8" y="58.0" font-size="12" font-weight="600" fill="#1f2937">0.199</text><text x="216" y="98.0" font-size="12.5" fill="#1f2937" text-anchor="end">Jaccard keyword overlap</text><rect x="230" y="84.0" width="476.5" height="20" fill="#1F3A5F" rx="3"/><line x1="584.3" y1="94.0" x2="815.9" y2="94.0" stroke="#33404F" stroke-width="1.6"/><line x1="584.3" y1="88.0" x2="584.3" y2="100.0" stroke="#33404F" stroke-width="1.6"/><line x1="815.9" y1="88.0" x2="815.9" y2="100.0" stroke="#33404F" stroke-width="1.6"/><text x="824.9" y="98.0" font-size="12" font-weight="600" fill="#1f2937">0.619</text><text x="216" y="138.0" font-size="12.5" fill="#1f2937" text-anchor="end">BM25</text><rect x="230" y="124.0" width="361.1" height="20" fill="#1F3A5F" rx="3"/><line x1="468.0" y1="134.0" x2="715.6" y2="134.0" stroke="#33404F" stroke-width="1.6"/><line x1="468.0" y1="128.0" x2="468.0" y2="140.0" stroke="#33404F" stroke-width="1.6"/><line x1="715.6" y1="128.0" x2="715.6" y2="140.0" stroke="#33404F" stroke-width="1.6"/><text x="724.6" y="138.0" font-size="12" font-weight="600" fill="#1f2937">0.469</text><text x="216" y="178.0" font-size="12.5" fill="#1f2937" text-anchor="end">TF-IDF cosine</text><rect x="230" y="164.0" width="608.5" height="20" fill="#C9962C" rx="3"/><line x1="752.2" y1="174.0" x2="907.9" y2="174.0" stroke="#33404F" stroke-width="1.6"/><line x1="752.2" y1="168.0" x2="752.2" y2="180.0" stroke="#33404F" stroke-width="1.6"/><line x1="907.9" y1="168.0" x2="907.9" y2="180.0" stroke="#33404F" stroke-width="1.6"/><text x="916.9" y="178.0" font-size="12" font-weight="600" fill="#1f2937">0.790</text></svg></section>
+
+<section><h2>Failure analysis &mdash; TF-IDF cosine</h2>
+<p class="hint">Which queries failed, and what kind of fix each needs.</p>
+<div class="fail"><div><div class="frow"><span class="nm">ok</span><span class="n">13</span><span class="fbar"><i style="width:65%;background:#2E7D5B"></i></span></div><div class="frow"><span class="nm">partial</span><span class="n">6</span><span class="fbar"><i style="width:30%;background:#2E8B8B"></i></span></div><div class="frow"><span class="nm">no_relevant</span><span class="n">1</span><span class="fbar"><i style="width:5%;background:#B03A2E"></i></span></div></div>
+<div><table><thead><tr><th>nDCG@5</th><th>#rel</th><th>Failure</th>
+<th>Query</th></tr></thead><tbody><tr><td class="num">0.000</td><td class="num">0</td><td><span class="tag" style="background:#B03A2E22;color:#B03A2E">no_relevant</span></td><td>UI Engineer</td></tr><tr><td class="num">0.488</td><td class="num">7</td><td><span class="tag" style="background:#2E8B8B22;color:#2E8B8B">partial</span></td><td>Machine Learning Engineer</td></tr><tr><td class="num">0.553</td><td class="num">7</td><td><span class="tag" style="background:#2E8B8B22;color:#2E8B8B">partial</span></td><td>Backend Engineer</td></tr><tr><td class="num">0.723</td><td class="num">5</td><td><span class="tag" style="background:#2E8B8B22;color:#2E8B8B">partial</span></td><td>Digital Marketing Specialist</td></tr><tr><td class="num">0.779</td><td class="num">15</td><td><span class="tag" style="background:#2E8B8B22;color:#2E8B8B">partial</span></td><td>Business Intelligence Analyst</td></tr></tbody></table></div></div>
+<div class="caveat"><b>no_relevant</b> &mdash; Label problem — no relevant resume exists for this query.</div></section>
+<div class="footer">Generated by the Resume Analyser evaluation harness &middot;
+significance via paired bootstrap over queries</div>
+</div></body></html>
