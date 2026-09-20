@@ -1,21 +1,3 @@
-"""
-Cross-validated evaluation.
-
-WHY THIS MATTERS FOR SMALL DATASETS
-    A single train/test split on 23 resumes gives you ~11 test documents
-    and N per-query observations. The confidence intervals come out so wide
-    that nothing is distinguishable.
-
-    K-fold rotates which resumes are held out. With 5 folds and 20 queries
-    you get 100 per-query observations instead of 20 — the bootstrap has
-    five times as much to work with, and the intervals tighten accordingly.
-
-    It does NOT invent data. It uses what you have more efficiently, and it
-    removes the luck of one particular split.
-
-    Grouping is still by candidate_id, so the leakage guarantee holds in
-    every fold.
-"""
 from __future__ import annotations
 
 import numpy as np
@@ -27,12 +9,6 @@ from .runner import Evaluator, SystemResult
 
 def cross_validate(dataset: Dataset, scorer_factory, n_folds: int = 5,
                    k_values=(1, 3, 5, 10), seed: int = 42) -> SystemResult:
-    """Evaluate one scorer across K folds, pooling per-query metrics.
-
-    scorer_factory: a zero-arg callable returning a FRESH scorer per fold.
-                    Must be fresh — a scorer fitted on fold 1's training data
-                    would carry that fit into fold 2 and leak.
-    """
     ids = [r.resume_id for r in dataset.resumes]
     groups = [r.candidate_id for r in dataset.resumes]
     n_groups = len(set(groups))
@@ -74,7 +50,6 @@ def cross_validate(dataset: Dataset, scorer_factory, n_folds: int = 5,
 
 
 def summarise_gain(single: SystemResult, cv: SystemResult, metric: str) -> str:
-    """Report how much the confidence interval tightened."""
     _, lo1, hi1 = single.ci(metric)
     _, lo2, hi2 = cv.ci(metric)
     w1, w2 = hi1 - lo1, hi2 - lo2
