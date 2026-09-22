@@ -1,10 +1,3 @@
-"""
-Evaluation metrics for resume-to-job ranking.
-
-Everything here is implemented from the definition rather than pulled from a
-library, so you can defend each formula in a viva. Each function is unit-tested
-in tests/test_metrics.py against hand-computed values.
-"""
 from __future__ import annotations
 
 import numpy as np
@@ -15,14 +8,7 @@ from scipy.stats import spearmanr
 # Ranking metrics
 # ----------------------------------------------------------------------
 def dcg_at_k(relevances: np.ndarray, k: int) -> float:
-    """Discounted Cumulative Gain.
-
-        DCG@k = sum_{i=1..k} (2^rel_i - 1) / log2(i + 1)
-
-    The 2^rel - 1 numerator is the standard "exponential gain" form: it
-    rewards highly-relevant items disproportionately, which is what we want
-    when a recruiter only reads the top few results.
-    """
+    """Discounted Cumulative Gain."""
     rel = np.asarray(relevances, dtype=float)[:k]
     if rel.size == 0:
         return 0.0
@@ -31,11 +17,6 @@ def dcg_at_k(relevances: np.ndarray, k: int) -> float:
 
 
 def ndcg_at_k(relevances: np.ndarray, k: int) -> float:
-    """Normalised DCG: DCG achieved / DCG of the perfect ordering.
-
-    Returns a value in [0, 1] that is comparable across queries with
-    different numbers of relevant documents.
-    """
     rel = np.asarray(relevances, dtype=float)
     actual = dcg_at_k(rel, k)
     ideal = dcg_at_k(np.sort(rel)[::-1], k)
@@ -43,7 +24,6 @@ def ndcg_at_k(relevances: np.ndarray, k: int) -> float:
 
 
 def precision_at_k(relevances: np.ndarray, k: int, threshold: float = 1.0) -> float:
-    """Fraction of the top-k that are relevant (rel >= threshold)."""
     rel = np.asarray(relevances, dtype=float)[:k]
     if rel.size == 0:
         return 0.0
@@ -51,7 +31,6 @@ def precision_at_k(relevances: np.ndarray, k: int, threshold: float = 1.0) -> fl
 
 
 def recall_at_k(relevances: np.ndarray, k: int, threshold: float = 1.0) -> float:
-    """Fraction of ALL relevant items that appear in the top k."""
     rel = np.asarray(relevances, dtype=float)
     total_relevant = int(np.sum(rel >= threshold))
     if total_relevant == 0:
@@ -60,18 +39,13 @@ def recall_at_k(relevances: np.ndarray, k: int, threshold: float = 1.0) -> float
 
 
 def reciprocal_rank(relevances: np.ndarray, threshold: float = 1.0) -> float:
-    """1 / rank of the first relevant item; 0 if none are relevant.
-
-    Averaged over queries this is MRR. Useful when the user only cares about
-    finding one good match quickly.
-    """
     rel = np.asarray(relevances, dtype=float)
     hits = np.nonzero(rel >= threshold)[0]
     return float(1.0 / (hits[0] + 1)) if hits.size else 0.0
 
 
 def average_precision(relevances: np.ndarray, threshold: float = 1.0) -> float:
-    """Mean of precision@i taken at every rank i where a relevant item appears."""
+
     rel = np.asarray(relevances, dtype=float)
     is_rel = rel >= threshold
     if not is_rel.any():
@@ -84,12 +58,7 @@ def average_precision(relevances: np.ndarray, threshold: float = 1.0) -> float:
 # Correlation (for the continuous quality score)
 # ----------------------------------------------------------------------
 def spearman(predicted: np.ndarray, actual: np.ndarray) -> float:
-    """Rank correlation.
-
-    Chosen over RMSE deliberately: if human raters use a 1-5 scale and the
-    model outputs 0-100, RMSE punishes a scale mismatch we don't care about.
-    What matters is whether better resumes rank higher.
-    """
+    """Rank correlation"""
     if len(predicted) < 3:
         return float("nan")
     rho, _ = spearmanr(predicted, actual)
@@ -105,14 +74,7 @@ def bootstrap_ci(
     confidence: float = 0.95,
     seed: int = 42,
 ) -> tuple[float, float, float]:
-    """Bootstrap confidence interval over per-query metric values.
 
-    Why this matters: with 40 evaluation queries, a difference of 0.79 vs 0.82
-    between two systems may be pure noise. Resampling the queries with
-    replacement tells you whether the gap survives.
-
-    Returns (mean, ci_low, ci_high).
-    """
     scores = np.asarray(per_query_scores, dtype=float)
     if scores.size == 0:
         return 0.0, 0.0, 0.0
@@ -138,14 +100,7 @@ def paired_bootstrap_pvalue(
     n_resamples: int = 2000,
     seed: int = 42,
 ) -> float:
-    """Two-sided paired bootstrap test: is system A genuinely better than B?
 
-    Both systems are scored on the SAME queries, so we resample query indices
-    once and apply them to both — that pairing removes query difficulty as a
-    confound and gives far more power than comparing independent means.
-
-    Returns an approximate p-value for H0: mean(A) == mean(B).
-    """
     a = np.asarray(scores_a, dtype=float)
     b = np.asarray(scores_b, dtype=float)
     if a.size != b.size or a.size < 2:
