@@ -2,18 +2,48 @@
 # Skill Analysis
 # -----------------------
 SKILL_SYNONYMS = {
+    # AI / data
     "ml": "machine learning",
     "ai": "artificial intelligence",
     "dl": "deep learning",
     "ds": "data science",
+    "natural language processing": "nlp",
+    "sklearn": "scikit-learn",
+    # Languages
     "js": "javascript",
     "py": "python",
-    "db": "database",
-    "pm": "project management",
-    "nlp": "natural language processing",
-    "gcp": "google cloud platform",
-    "aws": "amazon web services",
-    "az": "azure"
+    "golang": "go",
+    "cpp": "c++",
+    "csharp": "c#",
+    # Cloud / DevOps
+    "amazon web services": "aws",
+    "google cloud platform": "gcp",
+    "google cloud": "gcp",
+    "microsoft azure": "azure",
+    "k8s": "kubernetes",
+    # Frameworks
+    "node.js": "nodejs",
+    "node js": "nodejs",
+    "react.js": "react",
+    "reactjs": "react",
+    "vue.js": "vue",
+    "vuejs": "vue",
+    "angularjs": "angular",
+    "express.js": "express",
+    "expressjs": "express",
+    "springboot": "spring boot",
+    "tailwind css": "tailwind",
+    "tailwindcss": "tailwind",
+    # Databases
+    "postgres": "postgresql",
+    "mongo": "mongodb",
+    # Data / tools / APIs
+    "powerbi": "power bi",
+    "ms excel": "excel",
+    "microsoft excel": "excel",
+    "restful api": "rest api",
+    "restful apis": "rest api",
+    "rest apis": "rest api",
 }
 
 TECH_SKILLS = {
