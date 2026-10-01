@@ -68,10 +68,3 @@ LLM fine-tuning
 Resume parsing automation
 Cloud deployment on Azure/AWS
 Production-grade MLOps pipeline
-
-**Screenshots**
-Login
-<img width="1909" height="863" alt="Screenshot 2026-04-08 165021" src="https://github.com/user-attachments/assets/24b331dc-835c-47ba-a01f-db142ed1e389" />
-
-**Further Enhancements:**
-<img width="1913" height="1018" alt="Screenshot 2026-05-16 084847" src="https://github.com/user-attachments/assets/ebe5ae43-0f81-4a05-ba4c-0fc1eddc624e" />
