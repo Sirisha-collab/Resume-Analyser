@@ -60,6 +60,14 @@ Data Processing
 Pandas
 NumPy
 
+📊 **Screenshots**
+
+LANDING PAGE
+<img width="1892" height="885" alt="Screenshot 2026-10-01 122903" src="https://github.com/user-attachments/assets/efd4bbe8-ce08-4963-b252-f0989b58b414" />
+
+OUTPUT
+<img width="1903" height="791" alt="Screenshot 2026-10-01 123440" src="https://github.com/user-attachments/assets/7d0896c7-95bd-4d9f-866d-043c967e0b4f" />
+
 📊 **Future Enhancements**
 Real-time recruiter dashboard
 Live job API integration
