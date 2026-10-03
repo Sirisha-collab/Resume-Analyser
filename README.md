@@ -42,13 +42,12 @@ npx playwright test --browser=firefox --headed
 **🛠️ Tech Stack**
 Backend
 Python
-Flask / FastAPI
+FastAPI
 REST APIs
-Machine Learning & AI
+Machine Learning
 Scikit-learn
 BERT
 NLP
-Deep Learning
 FAISS Vector Search
 SpaCy (NER)
 Feature Engineering
